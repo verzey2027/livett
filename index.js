@@ -553,6 +553,19 @@ const musicUpload = multer({
 // =============================================================================
 // Routes
 // =============================================================================
+// Root route
+app.get("/", (_, res) => {
+  res.json({
+    name: "LiveTT API",
+    version: "1.0.0",
+    status: "online",
+    endpoints: {
+      health: "/health",
+      api: "/api/*"
+    }
+  })
+})
+
 app.get("/health", async (_, res) => {
   try {
     await pool.query("SELECT 1")
