@@ -87,24 +87,7 @@ VALUES (
   true
 );
 
--- สร้าง function สำหรับอัพเดท updated_at อัตโนมัติ
-CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
-BEGIN
-  NEW.updated_at = CURRENT_TIMESTAMP;
-  RETURN NEW;
-END;
-$$ language 'plpgsql';
-
--- สร้าง triggers สำหรับอัพเดท updated_at
-CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-
-CREATE TRIGGER update_donations_updated_at BEFORE UPDATE ON donations
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-
-CREATE TRIGGER update_donation_goals_updated_at BEFORE UPDATE ON donation_goals
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+-- Note: Triggers for auto-updating updated_at can be added later if needed
 
 -- แสดงข้อมูลที่สร้างเสร็จแล้ว
 SELECT 'Database setup completed!' AS status;
