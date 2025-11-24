@@ -52,6 +52,11 @@ const nextConfig = {
       bodySizeLimit: '50mb',
     },
   },
+  // Allow cross-origin requests from local network
+  allowedDevOrigins: [
+    'http://10.152.155.220:3000',
+    'http://localhost:3000',
+  ],
 }
 
 export default nextConfig
