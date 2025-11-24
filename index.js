@@ -1802,5 +1802,11 @@ async function start() {
   }
 }
 
-start()
+// Start server only if not in Vercel serverless environment
+if (process.env.VERCEL !== '1') {
+  start()
+}
+
+// Export for Vercel
+module.exports = app
 
