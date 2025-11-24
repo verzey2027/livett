@@ -56,6 +56,10 @@ app.use(
       if (origin.includes("localhost") || origin.includes("127.0.0.1")) {
         return callback(null, true)
       }
+      // Allow Vercel deployments
+      if (origin.includes("vercel.app")) {
+        return callback(null, true)
+      }
       if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
         return callback(null, true)
       }
